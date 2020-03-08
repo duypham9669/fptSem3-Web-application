@@ -1,0 +1,79 @@
+﻿@model WebApplication4.Models.Student
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal ngang container">
+
+    <h4>Student</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.hinhphat, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <input type="radio" id="tien" name="hinhphat" value="tien">
+        <label for="tien">Tiền</label><br>
+        <input type="radio" id="chongday" name="hinhphat" value="chongday">
+        <label for="chongday">Chống đẩy</label><br>
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.hinhphat, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.ValidationMessageFor(model => model.hinhphat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.soluong, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        Số lượng
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.soluong, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.soluong, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.ngaynopphat, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        Ngày nộp phạt
+        <br />
+        <input type="date" id="ngay" name="ngaynopphat">
+        <div class="col-md-10">
+
+            @*@Html.EditorFor(model => model.ngaynopphat, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.ValidationMessageFor(model => model.ngaynopphat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-facebook" />
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+}
+<script language="javascript">
+      var d = new Date();
+    var x = document.getElementById("ngay");
+    x.value = d;
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
